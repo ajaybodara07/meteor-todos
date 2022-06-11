@@ -34,7 +34,6 @@ module.exports = {
       proc.stderr.pipe(logStream);
     }
     proc.on('close', function(code) {
-      console.log(opts.name, 'exited with code ' + code);
       for (var i = 0; i < processes.length; i += 1) {
         processes[i].kill();
       }

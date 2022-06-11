@@ -6,7 +6,6 @@ const baseDir = path.resolve(__dirname, '../');
 const srcDir = baseDir;
 
 const cacheMeteor = function() {
-  console.log('Caching build & dependencies (can take a while the first time)');
   const childProcess = spawn('meteor', ['--raw-logs'], {
     cwd: srcDir,
     env: process.env
@@ -22,12 +21,10 @@ const cacheMeteor = function() {
   const exitAfterBuild = function exitAfterBuild(line) {
     if (line.indexOf('App running at') !== -1) {
       childProcess.kill();
-      console.log('Done caching build & dependencies');
     } else if (
       line.indexOf('Your application is crashing') !== -1 ||
       line.indexOf('Errors prevented startup') !== -1) {
       childProcess.kill();
-      console.error('There were issues whilst trying to cache build & dependencies');
       throw new Error(line);
     }
   };

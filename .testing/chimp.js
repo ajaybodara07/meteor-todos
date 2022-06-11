@@ -19,7 +19,6 @@ var startTestApp = function(onStarted, options) {
       env: extend(process.env, options)
     }
   }, function() {
-    console.log("Test app is running …");
     onStarted();
   });
 };
